@@ -1,7 +1,7 @@
 {
   "name": "aula01",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Aula de versionamento",
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
