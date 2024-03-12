@@ -5,7 +5,7 @@ html{
 body{
     height: 100%;
     margin: auto;
-    color: #232D36;
+    color: #9DA2A8;
     display: flex;
     flex-direction: column;
 }
@@ -16,5 +16,45 @@ header{
     display: flex;
     flex: 1;
     background-color:  #232D36;
-    
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
 }
+
+main{
+    flex: 8;
+    margin-left: 8px;
+    margin-right: 8px;
+
+}
+
+footer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+h) Crie a regra de estilo para o elemento ul ter a largura de 20rem, a margem interna na
+esquerda de 16px, desativar a propriedade list-style-type, transformar em um contêiner flex
+e exibir os elementos filhos em linha com um espaçamento igual nos elementos filhos.
+i) Crie a regra de estilo para o elemento h1 ter a cor de texto #9DA2A8 e o tamanho da
+fonte de 1.25rem.
+j) Crie a regra de estilo para o elemento a ter a cor de texto #9DA2A8 e sem decoração no
+texto.
+k) Crie a regra de estilo para o elemento table ter a largura de 100%.
+l) Crie a regra de estilo para o elemento td ter uma borda sólida de 1px com a cor #232D36.
+m) Crie a regra de estilo para o elemento input ser exibido em bloco, ter o tamanho da fonte
+em 1rem, a altura da linha de 1.25, a margem interna de 0.625rem e margem externa
+inferior de 8px;
+n) Crie a regra de estilo para o elemento input[type="submit"] para ter a cor de fundo
+#0DA698, a borda sólida de 1px na cor #0DA698 com os cantos arredondados em
+0.325rem.
+o) Cria a regra de estilo para a classe ativo ter a cor de texto #0DA698.
+6. Subir as modificações no GitHub.
+a) Adicionar todas as modificações realizadas no projeto no stage.
+b) Crie um novo commit com as modificações adicionadas.
+c) Enviar o commit para o branch develop do seu repositório no GitHub
+*/
