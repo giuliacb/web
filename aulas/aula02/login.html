@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML e CSS</title>
-    <link rel="sytlesheet" href="./estilos.css">
 </head>
 <body>
     <header>
@@ -18,9 +17,12 @@
         </nav>
     </header>
     <main>
-        <h2>Home</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, exercitationem quam asperiores aliquam inventore magnam odit vero assumenda ex quis, cupiditate est reiciendis temporibus quibusdam incidunt culpa non consequatur eaque!</p>
-
+        <h2>Login</h2>
+        <form action="./login.html" method="post">        
+            <input type="email" placeholder="E-mail" id="email" name="email" required />
+            <input type="password" placeholder="Senha" id="senha" name="senha" required />
+            <input type="submit" value="Entrar" />
+        </form>
     </main>
     <footer>Copyright 2024</footer>
 </body>
