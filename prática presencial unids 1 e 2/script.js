@@ -66,9 +66,11 @@ function InputSinopse(){
 
 function InputNota(){
     const inputNota = document.createElement('input');
-    inputNota.setAttribute('type', 'number', min="1", max="5");
+    inputNota.setAttribute('type', 'number');
+    inputNota.setAttribute('min', '1');
+    inputNota.setAttribute('max', '5');
     inputNota.setAttribute('placeholder', 'Classificação');
-    inputNota.setAttribute('required', false);
+    inputNota.setAttribute('required', 'false');
     return inputNota;
 }
 
@@ -123,7 +125,7 @@ function handleSubmit(event) {
 
     livros.push(livro); // Adiciona o objeto à constante livros
     event.target.submit(); // Submete o formulário se tiver valido
-    navegaPara('Meus Livros'); // Chama a função navegaPara() para carregar os 'Meus Livros'
+    NavegaPara('Meus Livros'); // Chama a função navegaPara() para carregar os 'Meus Livros'
     event.addEventListener('submit', handleSubmit);
 }
 
@@ -141,6 +143,105 @@ function FormLivro() {
     formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputSinopse());
     formElement.appendChild(document.createElement('br')); 
-    formElement.appendChild(InputNome());
+    formElement.appendChild(InputNota());
+    formElement.appendChild(document.createElement('br')); 
+    formElement.appendChild(InputSubmit);
     return formElement;
 }
+
+function ListaLivro() {
+    const table = document.createElement('table');
+
+    for (const prop in livros) {  //loop for...in para iterar sobre as propriedades do objeto livros.
+        const tr = document.createElement('tr'); // para cada propriedade do objeto livros, cria uma linha (<tr>) na tabela.
+        const tdProp = document.createElement('td'); //para cada propriedade do objeto livros, cria duas células (<td>) em cada linha: 
+        const tdValue = document.createElement('td'); //uma para o nome da propriedade (tdProp) e outra para o valor correspondente (tdValue).
+
+        tdProp.textContent = prop;
+        tdValue.textContent = livros[prop];
+
+        tr.appendChild(tdProp);
+        tr.appendChild(tdValue);
+
+        table.appendChild(tr);
+    }
+
+    return table;
+}
+
+function MeusLivros() {
+    const titulo = Titulo('Meus Livros');
+    const listaLivros = ListaLivro();
+    root.appendChild(titulo);
+    root.appendChild(listaLivros);  // adicionando o título e a lista de livros à constante root
+}
+
+function NovoLivro() {
+    const titulo = Titulo('Novo Livro');
+    const erroElement = document.createElement('p');
+    erroElement.classList.add('erro');
+    
+    const formularioLivro = FormLivro();
+    root.appendChild(titulo);
+    root.appendChild(erroElement);
+    root.appendChild(formularioLivro);
+}
+
+function LimpaConteudo() {
+    const root = document.getElementById('root');
+    const filhos = Array.from(root.children);// Converte os filhos de root em um array
+    // Remove cada filho de root
+    filhos.forEach(filho => {
+        root.removeChild(filho);
+    });
+}
+
+function AtivaLink(rota) {
+    const links = document.querySelectorAll('a'); // Seleciona todos os elementos <a>
+
+    links.forEach(link => {
+        if (link.textContent === rota) { // Se o texto interno do link for igual à rota
+            link.classList.add('ativo'); // Adiciona a classe 'ativo' ao link
+        } else {
+            link.classList.remove('ativo'); // Remove a classe 'ativo' do link
+        }
+    });
+}
+
+function NavegaPara(rota) {
+    LimpaConteudo(); // Limpa o conteúdo da página
+    AtivaLink(rota); // Ativa o link correspondente à rota
+
+    const root = document.getElementById('root');
+
+    if (rota === 'Meus Livros') {
+        const titulo = Titulo('Meus Livros');
+        const listaLivros = ListaLivro();
+        root.appendChild(titulo);
+        root.appendChild(listaLivros);
+    } else if (rota === 'Novo Livro') {
+        const titulo = Titulo('Novo Livro');
+        const erroElement = document.createElement('p');
+        erroElement.classList.add('erro');
+        const formularioLivro = FormLivro();
+        root.appendChild(titulo);
+        root.appendChild(erroElement);
+        root.appendChild(formularioLivro);
+    }
+}
+
+function AdicionaClickListener() {
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Previne o comportamento padrão de clicar no link
+
+            const rota = link.textContent.trim(); // Obtém o texto do link e remove espaços em branco extras
+            NavegaPara(rota); // Chama a função navegaPara() com o texto do link como parâmetro
+        });
+    });
+}
+
+AdicionaClickListener();
+NavegaPara('Meus Livros');
