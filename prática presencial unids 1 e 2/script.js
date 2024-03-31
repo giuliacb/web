@@ -1,12 +1,11 @@
-const livros = {
+const livros = [{
     titulo: "Título do Livro",
     nome: "Nome do(a) Autor(a)",
     editora: "Editora",
-    ano: "Ano de Publicação",
     genero: "Gênero",
     sinopse: "Sinopse",
-    nota: "Classificação"
-};
+    nota: "Nota"
+}];
 
 const root = document.getElementById('root');
 
@@ -18,6 +17,7 @@ function Titulo(nome){
 
 function InputTitulo(){
     const inputTitulo = document.createElement('input');
+    inputTitulo.setAttribute('id', 'titulo');
     inputTitulo.setAttribute('type', 'text');
     inputTitulo.setAttribute('placeholder', 'Título do Livro');
     inputTitulo.setAttribute('required', true);
@@ -26,6 +26,7 @@ function InputTitulo(){
 
 function InputNome(){ 
     const inputNome = document.createElement('input');
+    inputNome.setAttribute('id', 'nome');
     inputNome.setAttribute('type', 'text');
     inputNome.setAttribute('placeholder', 'Nome do(a) Autor(a)');
     inputNome.setAttribute('required', true);
@@ -34,22 +35,16 @@ function InputNome(){
 
 function InputEditora(){
     const inputEditora = document.createElement('input');
+    inputEditora.setAttribute('id', 'editora');
     inputEditora.setAttribute('type', 'text');
     inputEditora.setAttribute('placeholder', 'Editora');
     inputEditora.setAttribute('required', false);
     return inputEditora;
 }
 
-function InputAno(){
-    const inputAno = document.createElement('input');
-    inputAno.setAttribute('type', 'text');
-    inputAno.setAttribute('placeholder', 'Ano de Publicação');
-    inputAno.setAttribute('required', false);
-    return inputAno;
-}
-
 function InputGenero(){
     const inputGenero = document.createElement('input');
+    inputGenero.setAttribute('id', 'genero');
     inputGenero.setAttribute('type', 'text');
     inputGenero.setAttribute('placeholder', 'Gênero');
     inputGenero.setAttribute('required', true);
@@ -58,14 +53,16 @@ function InputGenero(){
 
 function InputSinopse(){
     const inputSinopse = document.createElement('input');
+    inputSinopse.setAttribute('id', 'sinopse');
     inputSinopse.setAttribute('type', 'text');
     inputSinopse.setAttribute('placeholder', 'Sinopse');
-    inputSinopse.setAttribute('required', 'false');
+    inputSinopse.setAttribute('required', false);
     return inputSinopse;
 }
 
 function InputNota(){
     const inputNota = document.createElement('input');
+    inputNota.setAttribute('id', 'nota');
     inputNota.setAttribute('type', 'number');
     inputNota.setAttribute('min', '1');
     inputNota.setAttribute('max', '5');
@@ -74,22 +71,17 @@ function InputNota(){
     return inputNota;
 }
 
-
 function InputSubmit(){
     const submitButton = document.createElement('input');
     submitButton.setAttribute('type', 'submit');
-    submitButton.setAttribute('value', 'Castrar Livro');
+    submitButton.setAttribute('value', 'Cadastrar Livro');
     return submitButton;
 }
 
 function validateForm(campos) {
+    //alert(campos.nome.length);
     if (campos && campos.nome && campos.nome.length >= 3) {
-        var padraoAno = /^\d{2}\/\d{2}\/\d{4}$/;
-        if (campos.ano && padraoAno.test(campos.ano)) {
-            return true; 
-        } else {
-            return false; 
-        }
+       return true;
     } else {
         return false; 
     }
@@ -97,31 +89,31 @@ function validateForm(campos) {
 
 function handleSubmit(event) {
     event.preventDefault(); // Impede que o formulário seja enviado
-
     const msgErro = document.querySelector('p.erro'); // Localiza o elemento <p> com a classe erro
-    msgErro.innerText = ''; // Limpa o texto interno deste elemento
+    if (msgErro) {
+        msgErro.textContent = ''; //limpa o texto do elemento
+    } 
 
     const formData = new FormData(event.target); // Converte o formulário em um objeto FormData
-
-    const isValid = validateForm(formData); // Testa o retorno da função validateForm()
-
-    if (!isValid) {
-        msgErro.innerText = "Nome deve conter pelo menos 3 caracteres e Ano deve estar no formato dd/mm/aaaa";
-        return; // Interrompe a função handleSubmit()
+    const campos = Object.fromEntries(formData);
+    const formularioValido = validateForm(campos);
+    
+    if (!formularioValido) { //se nn for valido
+        if(msgErro){
+            msgErro.textContent = 'Nome do autor deve contes pelo menos 3 caracteres!'
+        }
+        return;
     }
 
-    const livros = []; //array para armazenar objetos de livro 
-
     // Percorre cada campo do FormData e gera um objeto
-    const livro = {
+    const livro = [{
         titulo: formData.get('titulo'),
         nome: formData.get('nome'),
         editora: formData.get('editora'),
-        ano: formData.get('ano'),
         genero: formData.get('genero'),
         sinopse: formData.get('sinopse'),
         nota: formData.get('nota')
-    };
+    }];
 
     livros.push(livro); // Adiciona o objeto ao array de livros
     NavegaPara('Meus Livros'); // Chama a função navegaPara() para carregar os 'Meus Livros'
@@ -134,8 +126,6 @@ function FormLivro() {
     formElement.appendChild(InputNome());
     formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputEditora());
-    formElement.appendChild(document.createElement('br')); 
-    formElement.appendChild(InputAno());
     formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputGenero());
     formElement.appendChild(document.createElement('br')); 

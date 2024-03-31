@@ -6,7 +6,7 @@ html{
 body{
     height: 100%;
     margin: auto;
-    color:  #D5C5E9;
+    color:  #50293C;
     display: flex;
     flex-direction: column;
 }
@@ -77,4 +77,34 @@ a{
 
 }
   
-  
+table{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+td{
+    border: 1px solid #232D36;
+}
+
+input{
+    display: block;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.625rem;
+    margin-bottom: 8px;
+}
+
+input[type="submit"]{
+    background-color: #50293C;
+    border: 1px solid #50293C;
+    border-radius: 0.325rem;
+}
+
+.ativo{
+    color: rgb(61, 5, 61);
+}
+
+.erro{
+    color: #800000;
+}

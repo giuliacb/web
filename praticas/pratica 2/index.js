@@ -1,4 +1,5 @@
-const contatos = {nome: "NOME DO CONTATO", fone: "FONE DO CONTATO"};
+const contatos = [{nome: "NOME DO CONTATO", fone: "FONE DO CONTATO"}];
+
 
 const root = document.getElementById('root');
 
@@ -52,29 +53,23 @@ function handleSubmit(event) {
     }
 
     const formData = new FormData(event.target);
-    const formularioValido = validateForm(Object.fromEntries(formData));
+    const campos = Object.fromEntries(formData);
+    const formularioValido = validateForm(campos);
     
-    if (!formularioValido) { //se nn tiver valido 
+    if (!formularioValido) { //se não for válido 
         if (msgErro) {
             msgErro.textContent = 'Nome deve conter pelo menos 3 caracteres e Telefone deve estar no formato (99)99999-9999.';
         }
         return;
     } 
-     const contatos = [];
-     formData.forEach((valor, chave) => {
-         if (chave === 'nome') {
-             var nomeContato = valor;
-         }
-         if (chave === 'fone') {
-             var foneContato = valor;
-         }
-     });
-     
-     contatos.push({nome: "NOME DO CONTATO", fone: "FONE DO CONTATO"});
-     event.target.submit(); // Submete o formulário se tiver valido
-     navegaPara('Meus Contatos');
-
-     event.addEventListener('submit', handleSubmit);
+    
+    const nomeContato = campos.nome;
+    const foneContato = campos.fone;
+    
+    contatos.push({nome: nomeContato, fone: foneContato});
+    
+    navegaPara('Meus Contatos');
+    MeusContatos();
 }
 
 function FormContato() {
