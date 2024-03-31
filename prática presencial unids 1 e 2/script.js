@@ -1,6 +1,6 @@
 const livros = {
     titulo: "Título do Livro",
-    nome: "Nome do Autor",
+    nome: "Nome do(a) Autor(a)",
     editora: "Editora",
     ano: "Ano de Publicação",
     genero: "Gênero",
@@ -42,7 +42,7 @@ function InputEditora(){
 
 function InputAno(){
     const inputAno = document.createElement('input');
-    inputAno.setAttribute('type', 'number');
+    inputAno.setAttribute('type', 'text');
     inputAno.setAttribute('placeholder', 'Ano de Publicação');
     inputAno.setAttribute('required', false);
     return inputAno;
@@ -60,7 +60,7 @@ function InputSinopse(){
     const inputSinopse = document.createElement('input');
     inputSinopse.setAttribute('type', 'text');
     inputSinopse.setAttribute('placeholder', 'Sinopse');
-    inputSinopse.setAttribute('required', false);
+    inputSinopse.setAttribute('required', 'false');
     return inputSinopse;
 }
 
@@ -69,8 +69,8 @@ function InputNota(){
     inputNota.setAttribute('type', 'number');
     inputNota.setAttribute('min', '1');
     inputNota.setAttribute('max', '5');
-    inputNota.setAttribute('placeholder', 'Classificação');
-    inputNota.setAttribute('required', 'false');
+    inputNota.setAttribute('placeholder', 'Nota');
+    inputNota.setAttribute('required', false);
     return inputNota;
 }
 
@@ -110,7 +110,7 @@ function handleSubmit(event) {
         return; // Interrompe a função handleSubmit()
     }
 
-    const livros = []; // Array para armazenar os objetos de livros
+    const livros = []; //array para armazenar objetos de livro 
 
     // Percorre cada campo do FormData e gera um objeto
     const livro = {
@@ -123,10 +123,8 @@ function handleSubmit(event) {
         nota: formData.get('nota')
     };
 
-    livros.push(livro); // Adiciona o objeto à constante livros
-    event.target.submit(); // Submete o formulário se tiver valido
+    livros.push(livro); // Adiciona o objeto ao array de livros
     NavegaPara('Meus Livros'); // Chama a função navegaPara() para carregar os 'Meus Livros'
-    event.addEventListener('submit', handleSubmit);
 }
 
 function FormLivro() {
@@ -145,26 +143,31 @@ function FormLivro() {
     formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputNota());
     formElement.appendChild(document.createElement('br')); 
-    formElement.appendChild(InputSubmit);
+    formElement.appendChild(InputSubmit());
+    formElement.addEventListener('submit', handleSubmit); // Adiciona o evento submit ao formulário
     return formElement;
 }
 
 function ListaLivro() {
     const table = document.createElement('table');
 
-    for (const prop in livros) {  //loop for...in para iterar sobre as propriedades do objeto livros.
-        const tr = document.createElement('tr'); // para cada propriedade do objeto livros, cria uma linha (<tr>) na tabela.
-        const tdProp = document.createElement('td'); //para cada propriedade do objeto livros, cria duas células (<td>) em cada linha: 
-        const tdValue = document.createElement('td'); //uma para o nome da propriedade (tdProp) e outra para o valor correspondente (tdValue).
+    livros.forEach(livro => {  // Itera sobre cada livro no array de livros
+        const tr = document.createElement('tr'); // Cria uma linha para cada livro
 
-        tdProp.textContent = prop;
-        tdValue.textContent = livros[prop];
+        // Cria células para cada propriedade do livro
+        for (const prop in livro) {
+            const tdProp = document.createElement('td'); // Cria uma célula para a chave (propriedade)
+            const tdValue = document.createElement('td'); // Cria uma célula para o valor
 
-        tr.appendChild(tdProp);
-        tr.appendChild(tdValue);
+            tdProp.textContent = prop;
+            tdValue.textContent = livro[prop];
 
-        table.appendChild(tr);
-    }
+            tr.appendChild(tdProp);
+            tr.appendChild(tdValue);
+        }
+
+        table.appendChild(tr); // Adiciona a linha à tabela
+    });
 
     return table;
 }
