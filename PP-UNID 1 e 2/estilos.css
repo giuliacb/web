@@ -3,12 +3,14 @@ html{
     background-color: #FDDCEF;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
 body{
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 header h1 {
@@ -95,4 +97,9 @@ button{
     background-color: #50293C;
     margin-top: 1rem;
     cursor: pointer;
+}
+
+main{
+    display: flex;
+    justify-content: center; 
 }
