@@ -127,7 +127,7 @@ function NovoContato() {
 
 function limpaConteudo() {
   const root = document.getElementById("root");
-  root.innerHTML = '';
+  root.innerText = '';
 //   const filhos = Array.from(root.children); // Converte os filhos de root em um array
 //   // Remove cada filho de root
 //   filhos.forEach((filho) => {
