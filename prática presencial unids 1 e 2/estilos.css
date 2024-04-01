@@ -14,16 +14,16 @@ body{
 header{
     padding-left: 8px;
     padding-right: 8px;
-    flex: 2;
+    flex: 2.5;
     background-color:  #50293C;
     display: flex;
-    flex-direction: row ;
-    justify-content: space-between;
+    flex-direction: column ;
+    justify-content: center;
     align-items: center;
 }
 
 main{
-    flex: 8;
+    flex: 7.5;
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -52,7 +52,7 @@ ul {
 
 h1{
     color: #D5C5E9;
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-family: "Monoton", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -62,7 +62,7 @@ h2{
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,13 +74,12 @@ a{
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-style: normal;
-
+    font-size: 1.25rem;
 }
   
 table{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+   width: 100%;
+   padding: 2rem 8rem;
 }
 
 td{
@@ -92,13 +91,35 @@ input{
     font-size: 1rem;
     line-height: 1.25;
     padding: 0.625rem;
-    margin-bottom: 8px;
 }
 
 input[type="submit"]{
     background-color: #50293C;
     border: 1px solid #50293C;
     border-radius: 0.325rem;
+}
+
+select {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.625rem;
+    margin-bottom: 8px;
+    margin: 0;
+    width: 13.6rem;
+}
+
+select #genero{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .ativo{

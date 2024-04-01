@@ -51,7 +51,6 @@ function handleSubmit(event) {
   msgErro.innerText = ""; //limpa o texto do elemento
 
   const formData = new FormData(event.target);
-  console.log(formData);
   const campos = Object.fromEntries(formData);
   const formularioValido = validateForm(campos);
 

@@ -3,8 +3,7 @@ const livros = [{
     nome: "Nome do(a) Autor(a)",
     editora: "Editora",
     genero: "Gênero",
-    sinopse: "Sinopse",
-    nota: "Nota"
+    sinopse: "Sinopse"
 }];
 
 const root = document.getElementById('root');
@@ -18,6 +17,7 @@ function Titulo(nome){
 function InputTitulo(){
     const inputTitulo = document.createElement('input');
     inputTitulo.setAttribute('id', 'titulo');
+    inputTitulo.setAttribute('name', 'titulo');
     inputTitulo.setAttribute('type', 'text');
     inputTitulo.setAttribute('placeholder', 'Título do Livro');
     inputTitulo.setAttribute('required', true);
@@ -27,6 +27,7 @@ function InputTitulo(){
 function InputNome(){ 
     const inputNome = document.createElement('input');
     inputNome.setAttribute('id', 'nome');
+    inputNome.setAttribute('name', 'nome');
     inputNome.setAttribute('type', 'text');
     inputNome.setAttribute('placeholder', 'Nome do(a) Autor(a)');
     inputNome.setAttribute('required', true);
@@ -36,6 +37,7 @@ function InputNome(){
 function InputEditora(){
     const inputEditora = document.createElement('input');
     inputEditora.setAttribute('id', 'editora');
+    inputEditora.setAttribute('name', 'editora');
     inputEditora.setAttribute('type', 'text');
     inputEditora.setAttribute('placeholder', 'Editora');
     inputEditora.setAttribute('required', false);
@@ -43,32 +45,85 @@ function InputEditora(){
 }
 
 function InputGenero(){
-    const inputGenero = document.createElement('input');
+    const inputGenero = document.createElement('select');
     inputGenero.setAttribute('id', 'genero');
-    inputGenero.setAttribute('type', 'text');
-    inputGenero.setAttribute('placeholder', 'Gênero');
+    inputGenero.setAttribute('name', 'genero');
     inputGenero.setAttribute('required', true);
+
+    // Adicione a opção de placeholder
+    const opcaoPlaceholder = document.createElement('option');
+    opcaoPlaceholder.value = '';
+    opcaoPlaceholder.innerText = 'Selecione o gênero';
+    opcaoPlaceholder.disabled = true;
+    opcaoPlaceholder.selected = true;
+    inputGenero.appendChild(opcaoPlaceholder);
+
+    const opcaoAcao = document.createElement('option');
+    opcaoAcao.value = 'acao';
+    opcaoAcao.innerText = 'Ação';
+    inputGenero.appendChild(opcaoAcao);
+
+    const opcaoBiografia = document.createElement('option');
+    opcaoBiografia.value = 'biografia';
+    opcaoBiografia.innerText = 'Biografia';
+    inputGenero.appendChild(opcaoBiografia);
+
+    const opcaoDistopia = document.createElement('option');
+    opcaoDistopia.value = 'distopia';
+    opcaoDistopia.innerText = 'Distopia';
+    inputGenero.appendChild(opcaoDistopia);
+
+    const opcaoFantasia = document.createElement('option');
+    opcaoFantasia.value = 'fantasia';
+    opcaoFantasia.innerText = 'Fantasia';
+    inputGenero.appendChild(opcaoFantasia);
+
+    const opcaoFiccao = document.createElement('option');
+    opcaoFiccao.value = 'ficcao';
+    opcaoFiccao.innerText = 'Ficção';
+    inputGenero.appendChild(opcaoFiccao);
+
+    const opcaoGatronomia = document.createElement('option');
+    opcaoGatronomia.value = 'gastronomia';
+    opcaoGatronomia.innerText = 'Gastronomia';
+    inputGenero.appendChild(opcaoGatronomia);
+
+    const opcaoInfantil = document.createElement('option');
+    opcaoInfantil.value = 'infantil';
+    opcaoInfantil.innerText = 'Infantil';
+    inputGenero.appendChild(opcaoInfantil);
+
+    const opcaoTerror = document.createElement('option');
+    opcaoTerror.value = 'terror';
+    opcaoTerror.innerText = 'Terror';
+    inputGenero.appendChild(opcaoTerror);
+
+    const opcaoRomance = document.createElement('option');
+    opcaoRomance.value = 'romance';
+    opcaoRomance.innerText = 'Romamce';
+    inputGenero.appendChild(opcaoRomance);
+
+    const opcaoSuspense = document.createElement('option');
+    opcaoSuspense.value = 'suspense';
+    opcaoSuspense.innerText = 'Suspense';
+    inputGenero.appendChild(opcaoSuspense);
+
+    const opcaoOutro = document.createElement('option');
+    opcaoOutro.value = 'outro';
+    opcaoOutro.innerText = 'Outro';
+    inputGenero.appendChild(opcaoOutro);
+
     return inputGenero;
 }
 
 function InputSinopse(){
     const inputSinopse = document.createElement('input');
     inputSinopse.setAttribute('id', 'sinopse');
+    inputSinopse.setAttribute('name', 'sinopse');
     inputSinopse.setAttribute('type', 'text');
     inputSinopse.setAttribute('placeholder', 'Sinopse');
     inputSinopse.setAttribute('required', false);
     return inputSinopse;
-}
-
-function InputNota(){
-    const inputNota = document.createElement('input');
-    inputNota.setAttribute('id', 'nota');
-    inputNota.setAttribute('type', 'number');
-    inputNota.setAttribute('min', '1');
-    inputNota.setAttribute('max', '5');
-    inputNota.setAttribute('placeholder', 'Nota');
-    inputNota.setAttribute('required', false);
-    return inputNota;
 }
 
 function InputSubmit(){
@@ -79,7 +134,6 @@ function InputSubmit(){
 }
 
 function validateForm(campos) {
-    //alert(campos.nome.length);
     if (campos && campos.nome && campos.nome.length >= 3) {
        return true;
     } else {
@@ -90,32 +144,32 @@ function validateForm(campos) {
 function handleSubmit(event) {
     event.preventDefault(); // Impede que o formulário seja enviado
     const msgErro = document.querySelector('p.erro'); // Localiza o elemento <p> com a classe erro
-    if (msgErro) {
-        msgErro.textContent = ''; //limpa o texto do elemento
-    } 
+    msgErro.textContent = ''; //limpa o texto do elemento
+    
 
     const formData = new FormData(event.target); // Converte o formulário em um objeto FormData
     const campos = Object.fromEntries(formData);
     const formularioValido = validateForm(campos);
     
     if (!formularioValido) { //se nn for valido
-        if(msgErro){
-            msgErro.textContent = 'Nome do autor deve contes pelo menos 3 caracteres!'
-        }
+        msgErro.textContent = 'Nome do autor deve contes pelo menos 3 caracteres!'
         return;
     }
 
-    // Percorre cada campo do FormData e gera um objeto
-    const livro = [{
-        titulo: formData.get('titulo'),
-        nome: formData.get('nome'),
-        editora: formData.get('editora'),
-        genero: formData.get('genero'),
-        sinopse: formData.get('sinopse'),
-        nota: formData.get('nota')
-    }];
+    const tituloLivro = campos.titulo;
+    const nomeLivro = campos.nome;
+    const editoraLivro = campos.editora;
+    const generoLivro = campos.genero;
+    const sinopseLivro = campos.sinopse;
 
-    livros.push(livro); // Adiciona o objeto ao array de livros
+    livros.push({
+        titulo: tituloLivro,
+        nome: nomeLivro,
+        editora: editoraLivro,
+        genero: generoLivro,
+        sinopse: sinopseLivro
+    }); // Adiciona o objeto ao array de livros
+    
     NavegaPara('Meus Livros'); // Chama a função navegaPara() para carregar os 'Meus Livros'
 }
 
@@ -131,8 +185,6 @@ function FormLivro() {
     formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputSinopse());
     formElement.appendChild(document.createElement('br')); 
-    formElement.appendChild(InputNota());
-    formElement.appendChild(document.createElement('br')); 
     formElement.appendChild(InputSubmit());
     formElement.addEventListener('submit', handleSubmit); // Adiciona o evento submit ao formulário
     return formElement;
@@ -140,23 +192,42 @@ function FormLivro() {
 
 function ListaLivro() {
     const table = document.createElement('table');
+    const headerLinha = document.createElement('tr');
+    const tituloHeader = document.createElement('th');
+    tituloHeader.innerText = 'Título';
+    const nomeHeader = document.createElement('th');
+    nomeHeader.innerText = 'Autor(a)';
+    const editoraHeader = document.createElement('th');
+    editoraHeader.innerText = 'Editora';
+    const generoHeader = document.createElement('th');
+    generoHeader.innerText = 'Gênero';
+    const sinopseHeader = document.createElement('th');
+    sinopseHeader.innerText = 'Sinopse';
+    headerLinha.appendChild(tituloHeader);
+    headerLinha.appendChild(nomeHeader);
+    headerLinha.appendChild(editoraHeader);
+    headerLinha.appendChild(generoHeader);
+    headerLinha.appendChild(sinopseHeader);
+    table.appendChild(headerLinha);
 
-    livros.forEach(livro => {  // Itera sobre cada livro no array de livros
-        const tr = document.createElement('tr'); // Cria uma linha para cada livro
-
-        // Cria células para cada propriedade do livro
-        for (const prop in livro) {
-            const tdProp = document.createElement('td'); // Cria uma célula para a chave (propriedade)
-            const tdValue = document.createElement('td'); // Cria uma célula para o valor
-
-            tdProp.textContent = prop;
-            tdValue.textContent = livro[prop];
-
-            tr.appendChild(tdProp);
-            tr.appendChild(tdValue);
-        }
-
-        table.appendChild(tr); // Adiciona a linha à tabela
+    livros.forEach((livro) => {
+        const linha = document.createElement('tr');
+        const tituloCell = document.createElement('td');
+        tituloCell.innerText = livro.titulo;
+        const nomeCell = document.createElement('td');
+        nomeCell.innerText = livro.nome;
+        const editoraCell = document.createElement('td');
+        editoraCell.innerText = livro.editora;
+        const generoCell = document.createElement('td');
+        generoCell.innerText = livro.genero;
+        const sinopseCell = document.createElement('td');
+        sinopseCell.innerText = livro.sinopse;
+        linha.appendChild(tituloCell);
+        linha.appendChild(nomeCell);
+        linha.appendChild(editoraCell);
+        linha.appendChild(generoCell);
+        linha.appendChild(sinopseCell);
+        table.appendChild(linha);
     });
 
     return table;
@@ -182,17 +253,13 @@ function NovoLivro() {
 
 function LimpaConteudo() {
     const root = document.getElementById('root');
-    const filhos = Array.from(root.children);// Converte os filhos de root em um array
-    // Remove cada filho de root
-    filhos.forEach(filho => {
-        root.removeChild(filho);
-    });
+    root.innerText = '';
 }
 
 function AtivaLink(rota) {
     const links = document.querySelectorAll('a'); // Seleciona todos os elementos <a>
 
-    links.forEach(link => {
+    links.forEach((link) => {
         if (link.textContent === rota) { // Se o texto interno do link for igual à rota
             link.classList.add('ativo'); // Adiciona a classe 'ativo' ao link
         } else {
@@ -226,7 +293,7 @@ function NavegaPara(rota) {
 function AdicionaClickListener() {
     const links = document.querySelectorAll('a');
 
-    links.forEach(link => {
+    links.forEach((link) => {
         link.addEventListener('click', function(event) {
             event.preventDefault(); // Previne o comportamento padrão de clicar no link
 
@@ -237,4 +304,4 @@ function AdicionaClickListener() {
 }
 
 AdicionaClickListener();
-NavegaPara('Meus Livros');
+NavegaPara('Novo Livro');
