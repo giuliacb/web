@@ -117,7 +117,7 @@ function InputGenero(){
 }
 
 function InputSinopse(){
-    const inputSinopse = document.createElement('input');
+    const inputSinopse = document.createElement('textarea');
     inputSinopse.setAttribute('id', 'sinopse');
     inputSinopse.setAttribute('name', 'sinopse');
     inputSinopse.setAttribute('type', 'text');
