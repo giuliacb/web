@@ -100,7 +100,7 @@ function InputGenero(){
 
     const opcaoRomance = document.createElement('option');
     opcaoRomance.value = 'romance';
-    opcaoRomance.innerText = 'Romamce';
+    opcaoRomance.innerText = 'Romance';
     inputGenero.appendChild(opcaoRomance);
 
     const opcaoSuspense = document.createElement('option');
