@@ -1,0 +1,13 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #232d36;
+  margin: auto;
+}
+.erro {
+  color: #800000;
+}
