@@ -5,19 +5,30 @@ import { useNavigate } from "react-router-dom";
 function Novo(){
     const [nome, setNome] = useState("");
     const [telefone, setTelefone] = useState("");
-    const [erroNome] = useState("");
-    const [erroTelefone] = useState("");
+    const [erroNome, setErroNome] = useState("");
+    const [erroTelefone, setErroTelefone] = useState("");
 
-    const incluirContato = useContext(ContatosContext);
+    const {incluirContato} = useContext(ContatosContext);
     const navigate = useNavigate();
 
-    const novo = {
-        nome: nome,
-        telefone: telefone
-    };
+   
+    function handleSubmit(event){
+        const novo = {
+            nome: nome,
+            telefone: telefone
+        };
 
-    function handleSubmit(){
-        preventDefault();
+        event.preventDefault();
+        if (nome == ""){
+            setErroNome("Nome eh obrigatorio");
+            return;
+        }
+
+        if(telefone ==""){
+            setErroTelefone("Telefone eh obrigatorio");
+            return;
+        }
+
         incluirContato(novo);
         navigate('/');
     }

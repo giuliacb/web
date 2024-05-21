@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import ContatosContext from "../contexts/ContatosContext";
 
-function Home(){
-    const {meusContatos} = useContext(ContatosContext);
-   
+function Home() {
+    const { meusContatos } = useContext(ContatosContext);
+
     return (
         <>
             <h2>Meus Contatos</h2>
@@ -12,7 +12,7 @@ function Home(){
                     <li id={key}>
                         {contato.nome} - {contato.telefone}
                     </li>)}
-            </ul> 
+            </ul>
         </>
     );
 }
