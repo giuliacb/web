@@ -1,0 +1,11 @@
+html {
+    width: 100%;
+}
+
+#titulo {
+    font-size: 24rem;
+}
+
+.justificado {
+    text-align: justify;
+}

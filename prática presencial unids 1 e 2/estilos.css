@@ -1,0 +1,147 @@
+html{
+    height: 100%;
+    background-color: #FDDCEF;
+}
+
+body{
+    height: 100%;
+    margin: auto;
+    color:  #50293C;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    padding-left: 8px;
+    padding-right: 8px;
+    flex: 2.5;
+    background-color:  #50293C;
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    flex: 7.5;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+footer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p{
+    color: #50293C;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+ul {
+    width: 20rem;
+    padding-left: 16px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1{
+    color: #D5C5E9;
+    font-size: 2rem;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    color: #D5C5E9;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.25rem;
+}
+  
+table{
+   width: 100%;
+   padding: 2rem 8rem;
+}
+
+td{
+    border: 1px solid #232D36;
+}
+
+input{
+    display: block;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.625rem;
+}
+
+input[type="submit"]{
+    background-color: #50293C;
+    border: 1px solid #50293C;
+    border-radius: 0.325rem;
+}
+
+textarea{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    display: block;
+    padding: 0.625rem;
+    width: 12.3rem;
+}
+
+select {
+    display: block;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.625rem;
+    margin-bottom: 8px;
+    margin: 0;
+    width: 13.5rem;
+}
+
+select #genero{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ativo{
+    color: rgb(61, 5, 61);
+}
+
+.erro{
+    color: #800000;
+}
