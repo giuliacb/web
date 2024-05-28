@@ -1,0 +1,6 @@
+{
+    "contatos" : [
+        {"id": 1, "nome": "Giulia", "telefone": "99999-9999"},
+        {"id": 2, "nome": "Miguel", "telefone": "88888-8888"}
+    ]
+}
