@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 import ContatosContext from "../contexts/ContatosContext";
+import {useNavigate} from "react-router-dom";
+
 
 function Home() {
-    const { meusContatos, listarContatos, incluirContato } = useContext(ContatosContext);
-    useEffect(()=> {
-        listarContatos();
-    }, []);
+    const { meusContatos } = useContext(ContatosContext);
+    
 
     return (
         <>

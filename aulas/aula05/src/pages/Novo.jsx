@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
 import { ContatoContext } from "../contexts/ContatoContext";
 
 function Novo(){

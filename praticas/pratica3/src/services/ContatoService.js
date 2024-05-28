@@ -1,4 +1,4 @@
-const API_URL = 'http>//localhost:3000/contatos';
+const API_URL = 'http://localhost:3000/contatos';
 
 async function buscarTodos(){
     const response = await fetch (API_URL, {

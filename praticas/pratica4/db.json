@@ -1,6 +1,34 @@
 {
-    "contatos" : [
-        {"id": 1, "nome": "Giulia", "telefone": "99999-9999"},
-        {"id": 2, "nome": "Miguel", "telefone": "88888-8888"}
-    ]
+  "contatos": [
+    {
+      "id": "1",
+      "nome": "Giulia",
+      "telefone": "99999-9999"
+    },
+    {
+      "id": "2",
+      "nome": "Miguel",
+      "telefone": "88888-8888"
+    },
+    {
+      "id": "8eb1",
+      "nome": "Luiz ",
+      "telefone": "00000-0000"
+    },
+    {
+      "id": "9b71",
+      "nome": "Luiz ",
+      "telefone": "00000-0000"
+    },
+    {
+      "id": "02c1",
+      "nome": "Luiz ",
+      "telefone": "00000-0000"
+    },
+    {
+      "id": "4ac0",
+      "nome": "Luiz ",
+      "telefone": "00000-0000"
+    }
+  ]
 }

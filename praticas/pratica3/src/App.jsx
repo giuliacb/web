@@ -4,6 +4,7 @@ import Novo from "./pages/Novo";
 import Erro404 from "./pages/Erro404";
 import Layout from "./components/Layout";
 import Editar from "./pages/Editar";
+import Remover from "./pages/Remover";
 
 function App() {
  
