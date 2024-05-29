@@ -1,19 +1,19 @@
-import React from 'react';
-import { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import ContatosContext from '../contexts/ContatosContext';
-import { useParams } from 'react-router-dom';
 
 const Editar = () => {
-    const {listarContatos, incluirContato } = useContext(ContatosContext);
+    const { listarContatos, incluirContato, consultarContato, alterarContato } = useContext(ContatosContext);
 
     const [nome, setNome] = useState("");
     const [telefone, setTelefone] = useState("");
     const [erroNome, setErroNome] = useState("");
     const [erroTelefone, setErroTelefone] = useState("");
         
-    const {id} = useParams();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-    useEffect(()=> {
+    useEffect(() => {
         listarContatos();
     }, [listarContatos]);
 
@@ -21,70 +21,78 @@ const Editar = () => {
         if (id) {
             const fetchContato = async () => {
                 try {
-                    const contato = await consultarContatos(id);
+                    const contato = await consultarContato(id);
                     setNome(contato.nome);
                     setTelefone(contato.telefone);
                 } catch (error) {
                     console.error('Erro ao consultar contato:', error);
                 }
             };
-            fetchContato(id);
+            fetchContato();
         }
-    }, [id]);
+    }, [id, consultarContato]);
 
-    const navigate = useNavigate();
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-    const handleSubmit = () => {
         let hasError = false;
         if (!nome) {
-            setErroNome(true);
+            setErroNome("Nome é obrigatório");
             hasError = true;
         } else {
-            setErroNome(false);
+            setErroNome("");
         }
 
         if (!telefone) {
-            setErroTelefone(true);
+            setErroTelefone("Telefone é obrigatório");
             hasError = true;
         } else {
-            setErroTelefone(false);
+            setErroTelefone("");
         }
 
         if (!hasError) {
             if (id) {
-                alterarContato({ id, nome, telefone }); 
+                alterarContato({ nome, telefone }).then(() => {
+                    navigate('/'); 
+                });
             } else {
-                incluirContato({ nome, telefone });
+                incluirContato({ nome, telefone }).then(() => {
+                    navigate('/'); 
+                });
             }
-            navigate('/'); 
         }
     };
 
     return (
-    <>
-        <h2>Editar Contato</h2>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="nome">Nome:</label>
+        <>
+            <h2>Editar Contato</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="nome">Nome:</label>
                 <input
                     type="text"
                     id="nome"
                     value={nome}
-                    onChange={(e) => setNome(e.target.value)}
+                    onChange={(e) => {
+                        console.log('Nome input change:', e.target.value);
+                        setNome(e.target.value)}}
                 />
                 {erroNome && <p className="erro">{erroNome}</p>}
             
-            <label htmlFor="telefone">Telefone:</label>
+                <label htmlFor="telefone">Telefone:</label>
                 <input
                     type="text"
                     id="telefone"
                     value={telefone}
-                    onChange={(e) => setTelefone(e.target.value)}
+                    onChange={(e) => {
+                        console.log('Telefone input change:', e.target.value);
+                        setTelefone(e.target.value)}}
                 />
                 {erroTelefone && <p className="erro">{erroTelefone}</p>}
             
-            <button>Enviar</button>
-        </form>
-    </>);
+                <button type="submit">Enviar</button>
+            </form>
+        </>
+    );
 };
 
 export default Editar;

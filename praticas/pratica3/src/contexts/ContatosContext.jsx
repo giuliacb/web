@@ -10,28 +10,53 @@ const ContatosContext = createContext({
     excluirContato: () => { }
 });
 
-function ContatosContextProvider(props){
+function ContatosContextProvider(props) {
     const [contatos, setContatos] = useState([]);
 
-    async function incluir(contato){
-        return await service.adicionar(contato);
+    async function incluir(contato) {
+        try {
+            const novoContato = await service.adicionar(contato);
+            setContatos([...contatos, novoContato]);
+            return novoContato;
+        } catch (error) {
+            console.error('Erro ao incluir contato:', error);
+        }
     }
 
-    async function listar(){
-        const result = await service.buscarTodos();
-        setContatos(result);
+    async function listar() {
+        try {
+            const result = await service.buscarTodos();
+            setContatos(result);
+        } catch (error) {
+            console.error('Erro ao listar contatos:', error);
+        }
     }
 
-    async function consultar(id){
-        return await service.buscarUm(id);
+    async function consultar(id) {
+        try {
+            return await service.buscarUm(id);
+        } catch (error) {
+            console.error('Erro ao consultar contato:', error);
+        }
     }
 
-    async function alterar(contato){
-        return await service.atualizar(contato);
+    async function alterar(contato) {
+        try {
+            const contatoAtualizado = await service.atualizar(contato);
+            setContatos(contatos.map(c => (c.id === contato.id ? contatoAtualizado : c)));
+            return contatoAtualizado;
+        } catch (error) {
+            console.error('Erro ao alterar contato:', error);
+        }
     }
 
-    async function excluir(id){
-        return await service.remover(id);
+    async function excluir(id) {
+        try {
+            await service.remover(id);
+            setContatos(contatos.filter(c => c.id !== id));
+        } catch (error) {
+            console.error('Erro ao excluir contato:', error);
+        }
     }
 
     const contexto = {
