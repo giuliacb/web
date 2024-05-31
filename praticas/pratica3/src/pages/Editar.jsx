@@ -34,6 +34,7 @@ const Editar = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('ID do contato:', id); //verificando o id 
 
         let hasError = false;
         if (!nome) {
@@ -52,7 +53,7 @@ const Editar = () => {
 
         if (!hasError) {
             if (id) {
-                alterarContato({ nome, telefone }).then(() => {
+                alterarContato({ id, nome, telefone }).then(() => {
                     navigate('/'); 
                 });
             } else {

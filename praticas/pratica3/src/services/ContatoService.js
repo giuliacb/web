@@ -1,47 +1,43 @@
 const API_URL = 'http://localhost:3000/contatos';
 
-export const adicionar = async (contato) => {
+async function buscarTodos() {
+    const response = await fetch(API_URL, { method: "GET" });
+    return await response.json();
+}
+
+async function buscarUm(id) {
+    const response = await fetch(`${API_URL}/${id}`, { method: "GET" });
+    return await response.json();
+}
+
+async function adicionar(contato) {
     const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contato)
+        method: "POST",
+        body: JSON.stringify(contato),
+        headers: { "Content-Type": "application/json" }
     });
-    return response.json();
-};
+    return await response.json();
+}
 
-export const buscarTodos = async () => {
-    const response = await fetch(API_URL);
-    return response.json();
-};
-
-export const buscarUm = async (id) => {
-    const response = await fetch(`${API_URL}/${id}`);
-    return response.json();
-};
-
-export const atualizar = async (contato) => {
-    const response = await fetch(`${API_URL}/${contato.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contato)
+async function atualizar(contato) {
+    const { id, nome, telefone } = contato;
+    const response = await fetch(`${API_URL}/${id}`, {  // Certifique-se de que a URL inclua o ID
+        method: "PUT", 
+        body: JSON.stringify({ nome, telefone }),
+        headers: { "Content-Type": "application/json" }
     });
-    return response.json();
-};
 
-export const remover = async (id) => {
-    await fetch(`${API_URL}/${id}`, {
-        method: 'DELETE'
-    });
-};
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Error ${response.status}: ${errorMessage}`);
+    }
+    
+    return await response.json();
+}
 
-export default {
-    adicionar,
-    buscarTodos,
-    buscarUm,
-    atualizar,
-    remover
-};
+async function remover(id) {
+    const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    return await response.json();
+}
+
+export default { buscarTodos, buscarUm, adicionar, atualizar, remover };
