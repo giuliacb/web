@@ -1,0 +1,10 @@
+{
+    "livros": [
+        {"id":1, 
+        "titulo": "É assim que acaba", 
+        "nomeAutor": "Colleen", 
+        "editora": "Galera", 
+        "genero": "romance", 
+        "sinopse": "[...]"}
+    ]
+}

@@ -13,7 +13,7 @@ const Remover = () => {
     useEffect(() => {
         const fetchContato = async () => {
             try {
-                const contato = await consultarContato(id); // Use consultarContato em vez de consultarContatos
+                const contato = await consultarContato(id); 
                 setNome(contato.nome);
                 setTelefone(contato.telefone);
             } catch (error) {

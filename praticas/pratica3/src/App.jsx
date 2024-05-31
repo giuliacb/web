@@ -8,7 +8,6 @@ import Remover from "./pages/Remover";
 
 function App() {
  
-
   return (
     <>
       <BrowserRouter>

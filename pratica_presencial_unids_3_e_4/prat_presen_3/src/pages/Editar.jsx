@@ -1,60 +1,94 @@
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import LivrosContext from "../contexts/LivrosContext";
-import { useNavigate } from "react-router-dom";
-function Novo(){
+
+const Editar = () => {
+    const { listarLivros, incluirLivro, consultarLivro, alterarLivro } = useContext(LivrosContext);
+
     const [titulo, setTitulo] = useState("");
     const [nomeAutor, setNomeAutor] = useState("");
     const [editora, setEditora] = useState("");
     const [genero, setGenero] = useState("");
-    const [sinopse, setSinopse] = useState("");
     const [erroTitulo, setErroTitulo] = useState("");
     const [erroNomeAutor, setErroNomeAutor] = useState("");
     const [erroEditora, setErroEditora] = useState("");
     const [erroGenero, setErroGenero] = useState("");
-    const [erroSinopse, setErroSinopse] = useState("");
 
-    const {incluirLivro} = useContext(LivrosContext);
+    const {id} = useParams();
     const navigate = useNavigate();
 
-    function handleSubmit(event){
-        const novo = {
-            titulo: titulo,
-            nomeAutor: nomeAutor,
-            editora: editora,
-            genero: genero,
-            sinopse: sinopse
-        };
+    useEffect (() => {
+        listarLivros();
+    }, [listarLivros]);
 
+    useEffect(() => {
+        if(id){
+            const fetchLivro = async () => {
+                try {
+                    const livro = await consultarLivro(id);
+                    setTitulo(livro.titulo);
+                    setNomeAutor(livro.nomeAutor);
+                    setEditora(livro.editora);
+                    setGenero(livro.genero);
+                    setSinopse(livro.sinopse);
+                } catch (error) {
+                    console.error("Erro consultar livro", error)
+                }
+            };
+            fetchLivro();
+        }
+    }, [id, consultarLivro]);
+
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        if(titulo == ""){
+        let hasError = false;
+        if(!titulo){
             setErroTitulo("Titulo é obrigatório");
-            return;
+            hasError = true;
+        } else {
+            setErroTitulo("");
         }
 
-        if(nomeAutor == ""){
+        if(!nomeAutor) {
             setErroNomeAutor("Nome do(a) autor(a) é obrigatório");
-            return;
+            hasError = true;
+        } else {
+            setErroNomeAutor("");
         }
 
-        if(editora == ""){
+        if(!editora){
             setErroEditora("Editora é obrigatória");
-            return;
+            hasError = true;
+        } else {
+            setErroEditora("");
         }
 
-        if(genero == ""){
+        if(!genero){
             setErroGenero("Gênero é obrigatório");
-            return;
+            hasError = true;
+        } else {
+            setErroGenero("");
         }
 
-        incluirLivro(novo);
-        navigate('/');
-    }
+        // sinopse não é obrigatoria ent nn tem essa verificação
 
+        if(!hasError){ //se nn tiver erro vai alterar o livro
+            if(id){
+                alterarLivro({id, titulo, nomeAutor, editora, genero, sinopse}).then(() => {
+                    navigate('/');
+                });
+            } else {
+                incluirLivro({titulo, nomeAutor, editora, genero, sinopse}).then(() => {
+                    navigate('/');
+                });
+            }
+        }
+    };
 
     return (
-        <> 
-            <h2>Novo Livro</h2>
+        <>
+            <h2>Editar Livro</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="titulo"></label>
                     <input 
@@ -115,11 +149,12 @@ function Novo(){
                         onChange={(event)=>setSinopse(event.target.value)}
                     />
                     {erroSinopse && <p className="erro">{erroSinopse}</p>}
-            <button type="submit">Salvar Livro</button>
-
+                
+                <button type="submit">Salvar Livro</button>
             </form>
         </>
     );
-}
 
-export default Novo;
+};
+
+export default Editar;

@@ -47,19 +47,52 @@ h2{
   align-items: center;
 }
 
+input{
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.25;
+  padding: 0.625rem;
+}
+
+textarea{
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1rem;
+  display: block;
+  padding: 0.625rem;
+  width: 12.3rem;
+}
+
+select {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.25;
+  padding: 0.625rem;
+  margin-bottom: 8px;
+  margin: 0;
+  width: 13.6rem;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 0.625rem;
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  background-color: #50293C;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #bc69dd;
 }
 button:focus,
 button:focus-visible {
@@ -72,7 +105,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #bc69dd;
   }
   button {
     background-color: #f9f9f9;
