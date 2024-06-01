@@ -9,10 +9,12 @@ const Editar = () => {
     const [nomeAutor, setNomeAutor] = useState("");
     const [editora, setEditora] = useState("");
     const [genero, setGenero] = useState("");
+    const [sinopse, setSinopse] = useState("");
     const [erroTitulo, setErroTitulo] = useState("");
     const [erroNomeAutor, setErroNomeAutor] = useState("");
     const [erroEditora, setErroEditora] = useState("");
     const [erroGenero, setErroGenero] = useState("");
+    const [erroSinopse, setErroSinopse] = useState("");
 
     const {id} = useParams();
     const navigate = useNavigate();

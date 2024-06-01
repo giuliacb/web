@@ -29,12 +29,12 @@ a {
     color: #D5C5E9;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-style: normal;
     font-size: 1.25rem;
 }
 
-active {
+.active {
     color: rgb(61, 5, 61);
 }
 

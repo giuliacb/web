@@ -45,16 +45,26 @@ const Remover = () => {
     return (
         <>
             <h2>Remover Livro</h2>
-            <label>Titulo</label>
-            <sapn>{titulo}</sapn>
-            <label>Nome Autor(a)</label>
-            <sapn>{nomeAutor}</sapn>
-            <label>Editora</label>
-            <sapn>{editora}</sapn>
-            <label>Gênero</label>
-            <sapn>{genero}</sapn>
-            <label>Sinopse</label>
-            <sapn>{sinopse}</sapn>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Nome Autor(a)</th>
+                        <th>Editora</th>
+                        <th>Gênero</th>
+                        <th>Sinopse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{titulo}</td>
+                        <td>{nomeAutor}</td>
+                        <td>{editora}</td>
+                        <td>{genero}</td>
+                        <td>{sinopse}</td>
+                    </tr>
+                </tbody>
+            </table>
             <button onClick={handleRemover}>Remover</button>
         </>
     );

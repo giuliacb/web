@@ -1,37 +1,35 @@
-html{
+html, body {
     height: 100%;
+    margin: 0; /* Remove margin do body */
     background-color: #FDDCEF;
-}
-
-body{
-    height: 100%;
-    margin: auto;
-    color:  #50293C;
+    color: #50293C;
     display: flex;
     flex-direction: column;
 }
 
 header {
-    flex: 3;
+    padding-left: 8px;
+    padding-right: 8px;
+    flex: 0 0 auto;
+    background-color: #50293C;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color:#50293C;
+}
+
+main {
+    flex: 1 0 auto; /* Permite que o main expanda e ocupe o espaço restante */
     padding-left: 8px;
     padding-right: 8px;
 }
 
-main {
-    flex: 8;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-    
 footer {
-    flex: 1;
+    flex: 0 0 auto; /* Garante que o footer não expanda */
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    margin-top: auto; /* Empurra o footer para o fim do contêiner flex */
 }
 
 footer p{
@@ -40,11 +38,3 @@ footer p{
     font-weight: 200;
     font-style: normal;
 }    
-
-h1 {
-    color: #D5C5E9;
-    font-size: 2rem;
-    font-family: "Monoton", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}

@@ -12,15 +12,34 @@ function Home(){
     return (
         <> 
             <h2>Meus Livros</h2>
-            <ul>
-                {meusLivros.map((livro, key) => (
-                    <li key={key}>
-                        {livro.titulo} - {livro.nomeAutor} - {livro.editora} - {livro.genero} - {livro.sinopse}
-                        <Link to={`/editar/${livro.id}`}>Editar</Link>
-                        <Link to={`/remover/${livro.id}`}>Remover</Link>
-                    </li>
-                ))}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Nome do Autor</th>
+                        <th>Editora</th>
+                        <th>Gênero</th>
+                        <th>Sinopse</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {meusLivros.map((livro, key) => (
+                        <tr key={key}>
+                            <td>{livro.titulo}</td>
+                            <td>{livro.nomeAutor}</td>
+                            <td>{livro.editora}</td>
+                            <td>{livro.genero}</td>
+                            <td>{livro.sinopse}</td>
+                            <td>
+                                <Link to={`/editar/${livro.id}`} className="link-editar">Editar</Link>
+                                {' | '}
+                                <Link to={`/remover/${livro.id}`} className="link-remover">Remover</Link>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }
