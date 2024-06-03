@@ -39,7 +39,7 @@ const Editar = () => {
             };
             fetchLivro();
         }
-    }, [id, consultarLivro]);
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -98,9 +98,12 @@ const Editar = () => {
                         id='titulo'
                         placeholder='Título do Livro'
                         value={titulo}
-                        onChange={(event)=>setTitulo(event.target.value)}
-                    />
-                    {erroTitulo && <p className="erro">{erroTitulo}</p>}
+                        onChange={(event)=> {
+                            //console.log('Titulo input change:', event.target.value);
+                            setTitulo(event.target.value)}}
+                    /> 
+                    {erroTitulo && <p className="erro">{erroTitulo}</p>} 
+            
                     
                 <label htmlFor="nomeAutor"></label>
                     <input 
